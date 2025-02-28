@@ -5,8 +5,8 @@ require("dotenv").config();
 const { ethers } = require("ethers");
 
 async function main() {
-  const provider = new ethers.JsonRpcProvider(process.env.RPC);
-  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  const provider = new JsonRpcProvider(process.env.RPC);
+  const wallet = new Wallet(process.env.PRIVATE_KEY!, provider);
 
   const currentNonce = await provider.getTransactionCount(
     wallet.address,
@@ -26,7 +26,7 @@ async function main() {
     );
 
     try {
-      const minGasPrice = ethers.parseUnits(process.env.MIN_GAS_PRICE, "gwei");
+      const minGasPrice = parseUnits(process.env.MIN_GAS_PRICE!, "gwei");
 
       const tx = {
         nonce: currentNonce,
